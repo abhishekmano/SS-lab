@@ -1,0 +1,7 @@
+printf("Process \t Burst Time \t Arrival Time \t Waiting Time \t Turnaround Time\n");
+for(i=0;i<n;++i)
+        {printf("P%d \t \t %d \t \t %d \t \t %d \t \t %d \n",i+1,b[i],a[i],w[i],t[i]);
+        sw+=w[i];
+        st+=t[i];}
+printf("Average waiting time is %f \n Average turnaround time is %f \n",sw/n,st/n);
+

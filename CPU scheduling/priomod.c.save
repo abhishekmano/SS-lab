@@ -1,0 +1,93 @@
+
+ 1 #include<stdio.h>
+ 2 #include<stdlib.h>
+ 3 void swap(int *a,int *b)
+ 4 {int temp;
+ 5 temp=*a;
+ 6 *a=*b;
+ 7 *b=temp;
+ 8 }
+ 9 void main()
+10 {int n,i,j,ct=0,null,oldct,smallb,foundb,index;
+11 float sw=0,st=0;
+12 printf("Enter the number of process : ");
+13 scanf("%d",&n);
+14 int *a=(int*)malloc(n*sizeof(int));
+15 int *b=(int*)malloc(n*sizeof(int));
+16 int *w=(int*)malloc(n*sizeof(int));
+17 int *t=(int*)malloc(n*sizeof(int));
+18 int *remb=(int*)malloc(n*sizeof(int));
+19 for( i=0;i<n;++i)
+20         {printf("Enter the AT of %d :",i+1);
+21         scanf("%d",&a[i]);
+22         printf("Enter the BT of %d :",i+1);
+23         scanf("%d",&b[i]);
+24         remb[i]=b[i];
+25         w[i]=0;
+26         }
+27 for(i=0;i<n-1;++i)
+28         for(j=i+1;j<n;++j)
+29                 {if(a[i]>a[j])
+30                         {swap(&b[i],&b[j]);
+31                         swap(&a[i],&a[j]);
+32                         }
+33                 else if(a[i]==a[j] && b[i] > b[j])
+34                         {
+35                         swap(&b[i],&b[j]);
+36                         swap(&a[i],&a[j]);
+37                         }
+38                 }
+39 for(i=0;i<n;++i)
+40         printf("P%d - AT :%d BT :%d \n",i+1,a[i],b[i]);
+41 ct=a[0];
+42 null=n;
+43 do
+44 {//null=0;
+45 foundb=0;
+46 for(i=0;a[i]<=ct;++i)
+47         {
+48         if(foundb==0 && remb[i]!=0)
+49                 {
+50                 smallb=b[i];
+51                 index=i;
+52                 foundb=1;
+53                 }
+54         else if(remb[i]!=0 && smallb>b[i])
+55                 {
+56                 smallb=b[i];
+57                 index=i;
+58                 }
+59         }
+60
+61         oldct=ct;
+62         ct+=b[index];
+63         remb[index]=0;
+64                 for(j=0;j<n;++j)
+65                         if(a[j]<=ct && index!=j && remb[j]!=0)
+66                                 {
+67                                 if(a[j]<=oldct)
+68                                         w[j]+=b[index];
+69                                 else
+70                                         w[j]+=ct-a[j];
+71                                 }
+72 /*for(j=0;j<n;++j)
+73         if(remb[j]!=0)
+74                 {
+75                 null=1;
+76                 break;
+77                 }
+78 */
+79 null--;
+80 }
+81 while(null>0);
+82
+83 printf("Process \t Arrival Time \t Burst Time  \t Waiting Time \t Turnaround Time\n");
+84 for(i=0;i<n;++i)
+85         {t[i]=w[i]+b[i];
+86         printf("P%d \t \t %d \t \t %d \t \t %d \t \t %d \n",i+1,a[i],b[i],w[i],t[i]);
+87         sw+=w[i];
+88         st+=t[i];}
+89 printf("Average waiting time is %f \nAverage turnaround time is %f \n",sw/n,st/n);
+90 }
+
+
