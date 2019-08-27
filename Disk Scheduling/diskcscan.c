@@ -41,21 +41,21 @@ void main(){
                 printf("Move from\t%d\tto\t%d\twith seek %d\n",init,req[i],init-req[i]);
                 init=req[i];
                 }
-	if(init!=0){
-		printf("Move from\t%d\tto\t0\twith seek %d\n",init,init);
-		total+=init;
-		init=0;
-		}
-	for(i=(min+1);i<n;++i){
-		total+=req[i]-init;
-		printf("Move from\t%d\tto\t%d\twith seek %d\n",init,req[i],req[i]-init);
-		init=req[i];
-		}
+        if(init!=0){
+                printf("Move from\t%d\tto\t0\twith seek %d\n",init,init);
+                total+=init;
+                init=0;
+                }
+	printf("Move from\t0\tto\t%d\twith seek T\n",size-1);
+	init=size-1;
+        for(i=n-1;i>min;--i){
+                total+=init-req[i];
+                printf("Move from\t%d\tto\t%d\twith seek %d\n",init,req[i],init-req[i]);
+                init=req[i];
+                }
 
-        printf("***Total seek time is %f*** \n",total);
+        printf("***Total seek time is %f + T *** \n",total);
         printf("***Average seek time is %f*** \n",total/n);
 
         }
-
-
 
