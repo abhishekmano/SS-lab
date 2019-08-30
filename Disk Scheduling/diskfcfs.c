@@ -25,11 +25,11 @@ void main(){
         for(i=0;i<n;++i){
                 if(req[i]<=init){
                         total+=init-req[i];
-                        printf("Move from %d to %d with seek %d\n",init,req[i],init-req[i]);
+                        printf("Move from\t%d\tto\t%d\twith seek %d\n",init,req[i],init-req[i]);
                         }
                 else{
                         total+=req[i]-init;
-                         printf("Move from %d to %d with seek %d\n",init,req[i],req[i]-init);
+                         printf("Move from\t%d\tto\t%d\twith seek %d\n",init,req[i],req[i]-init);
                         }
                 init=req[i];
                 }

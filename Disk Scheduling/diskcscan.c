@@ -6,7 +6,7 @@ void swap(int *a,int *b){
         *a=*b;
         *b=temp;
         }
-void main(){
+int main(){
         int size,init,n,pos,i;
         float total=0;
 
@@ -33,7 +33,7 @@ void main(){
                                 swap(&req[i],&req[j]);
                 }
         int min=0;
-        for(min=0;req[min]<=init;++min);
+        for(min=0;req[min]<=init &&  min < n;++min);
         //printf("%d",req[min]);
         min--;
         for(i=min;i>=0;--i){
@@ -41,21 +41,24 @@ void main(){
                 printf("Move from\t%d\tto\t%d\twith seek %d\n",init,req[i],init-req[i]);
                 init=req[i];
                 }
+	 if(min == n-1)
+                return 0 ;
         if(init!=0){
                 printf("Move from\t%d\tto\t0\twith seek %d\n",init,init);
                 total+=init;
                 init=0;
                 }
-	printf("Move from\t0\tto\t%d\twith seek T\n",size-1);
+	printf("Move from\t0\tto\t%d\twith seek %d\n",size-1,size-1);
 	init=size-1;
+	total+=size-1;
         for(i=n-1;i>min;--i){
                 total+=init-req[i];
                 printf("Move from\t%d\tto\t%d\twith seek %d\n",init,req[i],init-req[i]);
                 init=req[i];
                 }
 
-        printf("***Total seek time is %f + T *** \n",total);
+        printf("*** Total seek time is %f *** \n",total);
         printf("***Average seek time is %f*** \n",total/n);
-
+	return 0 ;
         }
 
