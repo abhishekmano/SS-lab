@@ -9,7 +9,7 @@ void main(){
         int *res=(int *)malloc(nr*sizeof(int));
         int *left=(int *)malloc(nr*sizeof(int));
         for(i=0;i<nr;++i){
-                scanf("%d",&res[i]);
+                scanf("%d",&res[i]);            //Array contains number of each resource
                 left[i]=0;
                 }
         printf("Enter the number of Processes:");
@@ -29,7 +29,7 @@ void main(){
                         }
                 }
         for(i=0;i<nr;++i){
-                left[i]=res[i]-left[i];  //flipping the array
+                left[i]=res[i]-left[i];  //Left is now available resources
                 }
         printf("Enter the Max matrix\n");
         for(i=0;i<np;++i){
@@ -40,7 +40,7 @@ void main(){
                         }
                 }
         //All required arrays are initialized
-        int *comp=(int*)malloc(np*sizeof(int));
+        int *comp=(int*)malloc(np*sizeof(int));   ///Array to store safe sequence
         int flag=0,k,foundp,l,gotatleast=0;
         i=0;
         while(i<np){
